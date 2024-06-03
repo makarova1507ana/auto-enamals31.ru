@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block style %}
+    <link href="{% static "users/css/style-login.css" %}" rel="stylesheet">
+{% endblock %}
+
+
+
+{% block content %}
+<div class="content" id="content">
+     <div class="wrapper fadeInDown">
+    <h1>Ваша ссылка не корректна, войдите в аккаунт снова </h1>
+         <a href="{% url 'user:login' %}"></a>
+  </div>
+</div>
+{% endblock %}

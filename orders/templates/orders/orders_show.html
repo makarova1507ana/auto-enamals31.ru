@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% load orders_tags %}
+
+
+{% block style %}
+<link href="{% static "goods/css/style_corzina.css" %}" rel="stylesheet" />
+<link href="{% static "goods/css/style-login.css" %}" rel="stylesheet" />
+<link href="{% static "orders/css/orders.css" %}" rel="stylesheet" />
+{% endblock  %}
+
+{% block title %}
+    <title>Заказы</title>
+{% endblock  %}
+
+{% block content %}
+{% get_orders request as orders%}
+<div class="shopping-cart formContent">
+    <!-- Title -->
+    <div class="title">
+     <h3 class="text-center mb-4">Заказы</h3>
+    </div>
+    {% if not orders %}
+    <h2> У вас нет заказов</h2>
+    {% endif %}
+
+    {% for order in orders %}
+    <!-- Товар  -->
+
+
+    <div class=" {% if not forloop.last %}item-order{% else %}item-order{% endif %}">
+      <div class="description-order">
+          <span>ID заказа</span>
+      </div>
+      <div class="description-order">
+        <span>{{order.id}}</span>
+      </div>
+        <div class="description-order">
+        <span>Статус:</span>
+      </div>
+        <div class="description-order">
+        <span class="status-order {% if order.status == 'Отмена' %} cancel-order{% endif %}">{{order.status}}</span>
+      </div>
+        <div class="description-order">
+        <span>Дата заказа:</span>
+      </div>
+        <div class="description-order">
+        <span>{{order.created_timestamp}}</span>
+      </div>
+        <div class="data-profile btn- btn-m-right">
+        <a class="link-a-order" href="{% url 'orders:detail-order' user.id order.id %}">Подробнее</a>
+      </div>
+    </div>
+    <hr class="hr-orders">
+    {% endfor %}
+    {% if orders %}
+    <p class="description-order-p">*Заказ можно отметить если его статус: В обработке</p>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock  %}

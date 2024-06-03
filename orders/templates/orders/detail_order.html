@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block style %}
+<link href="{% static "goods/css/style_corzina.css" %}" rel="stylesheet" />
+<link href="{% static "goods/css/style-login.css" %}" rel="stylesheet" />
+<link href="{% static "orders/css/orders.css" %}" rel="stylesheet" />
+{% endblock  %}
+
+{% block title %}
+    <title>Заказы ID: {{id_order}}</title>
+{% endblock  %}
+
+{% block content %}
+<div class="shopping-cart formContent">
+    <!-- Title -->
+    <div class="title">
+     <h3 class="text-center mb-4">Заказы ID: {{id_order}}</h3>
+    </div>
+
+    {% for OrderItem in OrderItems %}
+    <!-- Товар  -->
+
+    <div class="item-order">
+        <div class="description-order-img">
+        <img class="image-orders" src="{% if not OrderItem.product.image %}{% static 'assets/img/no-photo.png'%}{% else %}{{ OrderItem.product.image.url }}{% endif %}"
+             alt="{{ product.name }}" />
+      </div>
+      <div class="description-order-name">
+        <span>{{OrderItem.name}}</span>
+      </div>
+        <div class="quantity-price">
+            <div class="description-order">
+                <span>{{OrderItem.price}}руб  *</span>
+             </div>
+            <div class="description-order">
+                <span>{{OrderItem.quantity}}шт.</span>
+            </div>
+        </div>
+    </div>
+    <hr class="hr-orders">
+
+    {% endfor %}
+    <div class="description-order">
+        <div class="description-order-name total_price">
+        <span>Заказ на сумму: {{OrderItems.total_price}}руб.</span>
+            </div>
+        <div class="description-order-name total_quantity">
+        <span>Количество товаров в заказе: {{OrderItems.total_quantity}}шт.</span>
+            </div>
+
+        {% if is_cancel %}
+        <div class="div-link-a-order">
+            <a class="link-a-order-detail " href="{% url 'orders:cancel_order' user.id id_order %}">Отмена</a>
+            </div>
+        {% endif %}
+    </div>
+
+
+
+  </div>
+</div>
+{% endblock  %}

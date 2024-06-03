@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<link href="{% static "goods/css/cat_sub.css" %}" rel="stylesheet" />
+{% endblock  %}
+
+{% block title %}
+    <title>Категории</title>
+{% endblock  %}
+
+
+{% block content %}
+<section>
+    {% for cat in categories %}
+        <a class="sub-link"  href="{% url 'catalog:catalog_sub' cat.slug %}">
+    <div>
+    <div class="category">
+        <img class="img-cat-sub" src="{{cat.image.url}}">
+        </div>
+        <div class="text">
+        <p class="text-sub-cat">{{cat}}</p>
+            </div>
+        </div>
+    </a>
+    {% endfor%}
+</section>
+{% endblock  %}

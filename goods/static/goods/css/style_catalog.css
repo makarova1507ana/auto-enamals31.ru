@@ -1,0 +1,138 @@
+:root{
+  --main-color-green: rgb(0, 95, 20);
+}
+
+.p-4-4{
+    padding: 0.5rem;
+}
+
+.block-img{
+    height:265px
+}
+
+.check-radio{
+    width:200px;
+}
+
+.form-check-label{
+    width: 172px;
+}
+
+
+.form-check-label::-webkit-scrollbar {
+  width: 30px;
+}
+
+.card-body{
+    margin-top: 60px;
+}
+
+.card-img-top{
+    width: 100%;
+
+}
+
+.name-product{
+    height:50px;
+}
+
+body {
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    height: 100%;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+#mainNav{
+  background-color: #212529;
+}
+
+.card-group{
+  margin-top: 30px
+}
+
+
+.product_id {
+  color: gray;
+  font-size: 15px;
+}
+
+.badge.bg-warning.text-dark {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  z-index: 1;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+
+.badge-banner {
+  top: 80%;
+  border-radius: 15px;
+  font-size: 0.7rem;
+}
+
+.row{
+  max-width: 1313px;
+}
+
+.cards {
+  display: flex;
+  /* Автоматически заполняем на всю ширину grid-контейнера */
+  grid-template-columns: repeat(auto-fill, 225px);
+  width: 100%;
+  max-width: 1075px; /* Ширина grid-контейнера */
+  justify-content: center;
+  justify-items: center; /* Размещаем карточку по центру */
+  column-gap: 30px; /* Отступ между колонками */
+  row-gap: 40px; /* Отступ между рядами */
+  margin: 0 auto;
+}
+
+.filter{
+  width: 200px;
+  margin-top: 30px;
+}
+
+.filter-full{
+    width: 200px;
+  margin-top: 90px;
+}
+
+.card-group{
+  margin-left: 26px;
+  width: 300px;
+  flex: 1;
+}
+
+
+#btn-filter{
+ display:none;
+}
+
+
+.add-to-cart{
+    text-decoration:none;
+  background-color: var(--main-color-green);
+}
+
+@media (max-width: 1200px) {
+  .filter{
+     display: none;
+    border: none;
+  }
+  #btn-filter{
+ display:block;
+    }
+}
+
+
+
+
+
+

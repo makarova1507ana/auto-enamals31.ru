@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% load carts_tags %}
+
+{% user_carts request as carts%}
+
+{% block style %}
+<link href="{% static "goods/css/style_corzina.css" %}" rel="stylesheet" />
+<link href="{% static "goods/css/style-login.css" %}" rel="stylesheet" />
+{% endblock  %}
+
+{% block title %}
+    <title>Корзина</title>
+{% endblock  %}
+
+{% block content %}
+<div class="shopping-cart formContent">
+    <!-- Title -->
+    <div class="title">
+     <h3 class="text-center mb-4">Корзина</h3>
+    </div>
+
+    {% for cart in carts %}
+    <!-- Товар  -->
+    <div class="item">
+      <div class="buttons">
+        <span class="delete-btn"></span>
+        <span class="like-btn"></span>
+      </div>
+
+      <div class="image-product">
+        <img src="https://ir.ozone.ru/s3/multimedia-q/wc1000/6224316098.jpg" alt="" />
+      </div>
+
+      <div class="description">
+        <span>Common Projects</span>
+        <span>Bball High</span>
+        <span>White</span>
+      </div>
+
+      <div class="quantity">
+        <button class="plus-btn" type="button" name="button" disabled>
+           <img class="img-btn" src="{% static "goods/icon/plus.png" %}" alt="" />
+        </button>
+        <input type="number" class="input-count-product" name="name" value="1">
+        <button class="minus-btn" type="button" name="button">
+            <img class="img-btn" src="{% static "goods/icon/minus.png" %}" alt="" />
+        </button>
+      </div>
+
+      <div class="total-price">$549</div>
+         <button class="delete-btn" type="button" name="button">
+            <img class="img-btn" src="{% static "goods/icon/container.png" %}" alt="" />
+        </button>
+    </div>
+    {% endfor %}
+
+    <div class="item">
+        <div class="description">
+            <input type="submit" class="btn-order" value="Оформить заказ">
+        </div>
+    
+  </div>
+   <!-- Товар #3 -->
+
+  </div>
+</div>
+{% endblock  %}

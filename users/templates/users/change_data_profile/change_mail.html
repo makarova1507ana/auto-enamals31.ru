@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<link href="{% static "users/css/style-login.css" %}" rel="stylesheet" />
+<link href="{% static "users/css/style-profile.css" %}" rel="stylesheet" />
+{% endblock  %}
+
+{% block title %}
+    <title>Изменения почты</title>
+{% endblock  %}
+
+{% block content %}
+<div class="content">
+    <div class="wrapper fadeInDown">
+        <div class="col-md-">
+            <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow">
+                <h3 class="text-center mb-4">Изменение почты</h3>
+                <form class="form-login" method="post">{% csrf_token %}
+                    <div>
+                            <input id="id_new_email" name="new_email" type="email" class="fadeIn second  input-change-password" placeholder="Почта" required>
+                            {% if form.new_email.errors %}
+                                <div class="alert alert-danger alert-dismissible fade show">{{ form.new_email.errors }}</div>
+                                {% endif%}
+                        <div class="submit-row">
+                            <input type="submit"  class="default">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}
+

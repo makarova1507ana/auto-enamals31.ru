@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<link href="{% static "goods/css/style_catalog.css" %}" rel="stylesheet" />
+{% endblock  %}
+
+{% block title %}
+    <title>Каталог</title>
+{% endblock  %}
+
+
+{% block content %}
+<div class='container'>
+    <div class='cards'>
+        <div class="filter">
+            <div class="form-check">
+                {% for product in products %}
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="{{product.category.slug}}">
+                <label class="form-check-label" for="{{product.category.slug}}">
+                  {{product.category}}
+                </label>
+                {% endfor%}
+              </div>
+        </div>
+        <div class="card-group">
+          <div class="row">
+              {% for product in products %}
+            <!-- Карта товара -->
+            <div class="col-lg-4 col-md-6 p-4">
+                <div class="card-catalog  rounded custom-shadow">
+                    <div class="block-img">
+                        <img src="{{product.image.url }}" class="card-img-top block-img-img" alt="...">
+                        </div>
+                    <div class="card-body">
+                        <div class="name-product" >
+                        <a href="{% url 'detail_card' product.slug %}">
+                            <p class="card-title">{{ product.name }}</p>
+                        </a>
+                            </div>
+                        <p class="product_id">id: 02265</p>
+                        <div class="d-flex justify-content-between">
+                            <p><s>100</s> $</p>
+                            <p><strong>90.00 $</strong></p>
+
+                            <!-- <p><strong>100.00 $</strong></p> -->
+
+                        </div>
+                        <a href="#" class="btn add-to-cart">
+                            <img class="mx-1" src="{% static "goods/icon/cart_white.png" %}" alt="Catalog Icon" width="32" height="32">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor%}
+            <!-- Карта товара -->
+
+
+            </div>
+        </div>
+    </div>
+</div>
+ <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+{% endblock  %}

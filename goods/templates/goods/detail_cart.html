@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% load carts_tags %}
+
+
+{% block style %}
+<link href="{% static "goods/css/detail_card.css" %}" rel="stylesheet" />
+<link href="{% static "goods/css/style-catalog2.css" %}" rel="stylesheet" />
+<link href="{% static "goods/css/style_catalog.css" %}" rel="stylesheet" />
+{% endblock  %}
+
+
+{% block title %}
+    <title>Заказ</title>
+{% endblock  %}
+
+
+{% block content %}
+{% user_carts_for_catalog request as carts %}
+{% user_carts request as carts_cat %}
+<div class='container-main container'>
+    <div class='img-full-none' id="img-full-none">
+        <button class="button-close" id="button-close">x</button>
+        <img class="img-card" src="{% if not product.image %}{% static 'assets/img/no-photo.png'%}{% else %}{{ product.image.url }}{% endif %}">
+    </div>
+    <div class="info-card" id="info-card">
+        <div class="div-links-a">
+            <a class="link-a-product" href="/catalog/categories/">Категории</a> >
+            <a class="link-a-product" href="/catalog/categories/{{product.category.slug}}/">{{ product.category }}</a> >
+            <a class="link-a-product" href="/catalog/{{product.subcategory.slug}}/catalog/">{{ product.subcategory }}</a>
+        </div>
+        <div class='title'>
+           <h2>{{ product.name}}</h2>
+           </div>
+           <div class='img-card-div' id="img-card-div">
+
+                   <img class="img-card" src="{% if not product.image %}{% static 'assets/img/no-photo.png'%}{% else %}{{ product.image.url }}{% endif %}">
+               </div>
+           <div class='card-main' id="cart">
+              {% include "goods/includes/include_detail_cart.html" %}
+           </div>
+           <div class="products">
+            <div class='title'>
+               <h3>Похожие товары</h3>
+               <div class="cards" id="cards">
+                  {% for product in products %}
+                   <!-- Карта товара -->
+                   {% include "goods/includes/product-for-catalog.html" %}
+
+                   {% endfor%}
+               </div>
+            </div>
+           </div>
+    </div>
+</div>
+
+{% endblock  %}

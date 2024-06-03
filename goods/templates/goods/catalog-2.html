@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% load static %}
+{% load goods_tags %}
+{% load carts_tags %}
+
+
+
+{% block style %}
+    <link href="{% static "goods/css/style-catalog2.css" %}" rel="stylesheet" />
+    <link href="{% static "goods/css/style_catalog.css" %}" rel="stylesheet" />
+{% endblock  %}
+
+{% block title %}
+    <title>Каталог</title>
+{% endblock  %}
+
+
+{% block content %}
+{% user_carts_for_catalog request as carts %}
+
+
+<div class='container'>
+    <div class='cards'>
+        <div class="filter"  id="filter-block">
+            <button class="btn-cancel" id="btn-cancel"><img class="mx-1" src="{% static "goods/icon/cancel.png" %}" alt="Catalog Icon" width="20" height="20"></button>
+         <form action="" class="form-data" method="get" id='foo1'>
+
+            <h3  class="form-check-title">Сортировать по:</h3>
+
+                <div class="form-check">
+                    <input class="form-check-input" checkbox-click type="checkbox" name="on_sale" id="flexCheckDefault11" value="on"
+                           {% if request.GET.on_sale == "on" %}checked{% endif %} >
+                    <input type="hidden" name="q" value="{{ request.GET.q }}">
+                    <label class="form-check-label black-text" for="flexCheckDefault11">
+                        Товары по акции
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" checkbox-click type="checkbox" name="is_stock" id="checkbox_is_stock" value="True"
+                           {% if request.GET.is_stock == "True" %}checked{% endif %} >
+                    <label class="form-check-label black-text" for="checkbox_is_stock">
+                        Есть в наличии
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" checkbox-click type="radio" name="order_by" id="flexRadioDefault22" value="default"
+                            {% if not request.GET.order_by or request.GET.order_by == 'default' %}checked{% endif %} >
+                    <label class="form-check-label black-text" for="flexRadioDefault22">
+                        По умолчанию
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" checkbox-click type="radio" name="order_by" id="flexRadioDefault33" value="price"
+                            {% if request.GET.order_by == 'price' %}checked{% endif %}>
+                    <label class="form-check-label black-text" for="flexRadioDefault33">
+                        От дешевых к дорогим
+                    </label>
+                </div>
+                 <div class="form-check">
+                    <input class="form-check-input" checkbox-click type="radio" name="order_by" id="flexRadioDefault44" value="-price"
+                            {% if request.GET.order_by == '-price' %}checked{% endif %}>
+                    <label class="form-check-label" for="flexRadioDefault44">
+                        От дорогих к дешевым
+                    </label>
+                </div>
+
+            {% if category  %}
+             {% count category as count_category %}
+             <h3  class="form-check-title">Категории</h3>
+            <div class="form-check  {% if  count_category > 6  %}filter-search{% endif %} scrollbar">
+                {% for cut in category %}
+                <div class="check-radio">
+                    <input class="form-check-input"  checkbox-click type="checkbox" name="category" value="{{cut.name}}" id="{{cut.slug}}"  {% if  request.GET.category == cut.name %}checked{% endif %} >
+                    <label class="form-check-label" for="{{cut.slug}}">
+                      {{cut}}
+                    </label>
+                </div>
+                {% endfor%}
+              </div>
+             {% endif %}
+
+            {% if subcategory  %}
+             {% count subcategory as count_subcategory %}
+            <h3 class="form-check-title">Подкатегории</h3>
+            <div class="form-check  {% if  count_subcategory > 6 %}filter-search{% endif %} scrollbar style-3">
+                {% for sub in subcategory %}
+                <div class="check-radio">
+                    <input class="form-check-input" checkbox-click  type="checkbox" name="subcategory" value="{{sub.name}}" id="{{sub.slug}}"{% if  request.GET.subcategory == sub.name %}checked{% endif %} >
+                    <label class="form-check-label" for="{{sub.slug}}">
+                      {{sub}}
+                    </label>
+                </div>
+                {% endfor%}
+              </div>
+            {% endif %}
+
+            {% if brands  %}
+             {% count brands as count_brand %}
+            <h3  class="form-check-title">Бренд</h3>
+            <div class="form-check  {% if  count_brand > 6  %}filter-search{% endif %} scrollbar style-3" id="style-3">
+                {%  for brand in brands %}
+                {% if brand  %}
+                <div class="check-radio">
+                    <input class="form-check-input" checkbox-click type="checkbox" name="brand"
+                           value="{{brand.name}}" id="{{brand.slug}}"  {% if  request.GET.brand == brand.name %}checked{% endif %} >
+                    <label class="form-check-label" for="{{brand.slug}}">
+                      {{brand}}
+                    </label>
+                </div>
+                {% endif %}
+                {% endfor%}
+                </div>
+            {% endif %}
+
+
+             {% if color %}
+             {% count color as count_color %}
+             <h3  class="form-check-title">Цвет</h3>
+            <div class="form-check {% if  count_color > 6  %}filter-search{% endif %} scrollbar">
+                {% for c in color %}
+                {% if c  %}
+                <div class="check-radio">
+                    <input class="form-check-input" checkbox-click type="checkbox" name="color"
+                           value="{{c.name}}" id="{{c.slug}}" {% if  request.GET.color == c.name %}checked{% endif %}>
+                    <label class="form-check-label" for="{{c.slug}}">
+                      {{c}}
+                    </label>
+                </div>
+                {% endif %}
+                {% endfor%}
+              </div>
+             {% endif %}
+
+            </div>
+        </form>
+        <div class="card-group" id="data-cards">
+          <div class="row">
+              <form class="d-flex form-data" role="search"  action="{% url 'catalog:search' %}" method="get">
+                
+                    <input class="form-control me-2 input-form-control" type="search" name="q" placeholder="Искать на сайте" aria-label="Search">
+                    <button class="btn btn-form-control  btn-search btn-outline-success text-white" type="submit">Поиск</button>
+                </form>
+                            <button class="btn btn-form-control  btn-search btn-filter btn-outline-success text-white" id="btn-filter"> <img class="mx-1" src="{% static "icons/filter.png" %}" alt="Catalog Icon" width="20" height="20"></button>
+
+              <div class="dropdown mb-2">
+                    <form action="" method="get" class="dropdown-menu bg-dark form-data"
+                          data-bs-theme="dark">
+                        <div class="form-check text-white mx-3">
+                            <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on"
+                                   {% if request.GET.on_sale == "on" %}checked{% endif %} >
+                            <input type="hidden" name="q" value="{{ request.GET.q }}">
+
+                        </div>
+                    </form>
+              </div>
+              <div class="container" id="cart-items-container">
+            <!-- Карта товара -->
+            {% if not products %}
+                  <div class="info-div">
+                  <p class="info-p">Товаров с таким запросом нет </p>
+                       </div>
+                      {% endif %}
+
+                  {% for product in products %}
+                      <div class="col-lg-4 col-md-6 p-4" id="product-{{ product.id }}">
+                    {% include "goods/includes/product-for-catalog.html" %}
+                           </div>
+                  {% endfor%}
+              </div>
+          </div>
+        </div>
+    </div>
+    {% if products %}
+        <div class="paginator" id="paginator-block">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                 <li class="page-item {% if not products.has_previous %} disabled {% endif %}">
+                        <a class="page-link" href="{% if products.has_previous %}
+                        ?{% change_tag page=products.previous_page_number %}
+                        {% else %}#{% endif %}">Назад</a>
+                    </li>
+                    {% for page in products.paginator.page_range %}
+                    {% if page >= products.number|add:-1 and page <= products.number|add:1 %}
+                    <li class="page-item {% if products.number == page %} active-page {% endif %}">
+                        <a class="page-link" href="?{% change_tag page=page %}">{{ page }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+
+                    <li class="page-item {% if not products.has_next %} disabled {% endif %}">
+                        <a class="page-link" href="{% if products.has_next %}
+                         ?{% change_tag page=products.next_page_number %}
+                        {% else %}
+                        #
+                        {% endif %}">Следующая</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock  %}

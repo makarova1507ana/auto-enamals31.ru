@@ -1,0 +1,119 @@
+{% load static %}
+{% load carts_tags %}
+
+
+{% user_carts_order request as carts_info %}
+{% check_select request as check_select %}
+{% is_delete request as is_delete %}
+<div id="carts-container">
+    <div class="shopping-cart formContent" id="cart-items-container">
+        <!-- Title -->
+        <div class="title">
+         <h3 class="text-center mb-4">Корзина</h3>
+        </div>
+        {% if carts %}
+        <div class="item">
+            <input class="select-all checkmark-all" data-cart-change-url="{% url 'cart:cart_select_all' %}"  data-cart-id="s2ss" type="checkbox"
+                   name="qq" value="{{cart.id}}" id="select-all" {% if check_select %} checked {% endif %}>
+             <label class="form-check-label" for="select-all">
+                 Выбрать все
+                    </label>
+            {% if is_delete %}
+            <a class="a-delete" href="{% url 'cart:cart_select_delete' %}">Удалить выделенное</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% for cart in carts %}
+
+
+
+        <!-- Товар  -->
+        <div class="item">
+          <div class="buttons">
+              {% if cart.quantity %}
+               <input class="checkmark test" data-cart-change-url="{% url 'cart:cart_select' %}" data-cart-id="{{cart.id}}" type="checkbox"
+                   name="category" value="{{cart.id}}" id="test{{cart.id}}" {% if cart.is_buy%}checked {% endif %}  >
+              {% endif %}
+          </div>
+
+          <div class="image-product">
+              <a href="{% url 'catalog:detail_card' cart.product.slug %}">
+                      <img  src="{% if not cart.product.image %}{% static 'assets/img/no-photo.png'%}{% else %}{{cart.product.image.url }}{% endif %}" alt="{{ cart.product.name }}"/>
+                     </a>
+          </div>
+
+          <div class="description">
+              <a href="{% url 'catalog:detail_card' cart.product.slug %}">
+                <span>{{ cart.product.name|truncatewords:6 }}</span>
+              </a>
+          </div>
+
+          <div class="quantity">
+              {% if cart.product.quantity  %}
+
+              <div class="center-block">
+             <button class="decrement beautiful-button {% if cart.quantity == 1 %}disabled-btn{% endif %}" type="button" name="button"
+            data-cart-id="{{ cart.id }}" data-value="{{ cart.product.quantity }}"
+                    data-cart-change-url="{% url 'cart:cart_change' %}"  {% if cart.quantity == 1 %}disabled="true"{% endif %}>
+                {% csrf_token %}
+               -
+            </button>
+            <input type="number" data-count-product class="input-count-product  number " data-cart-id="{{ cart.id }}"
+            data-cart-change-url="{% url 'cart:cart_change' %}" data-value="{{ cart.product.quantity }}"  name="name"
+                   value="{% if cart.quantity >= cart.product.quantity %}{{ cart.product.quantity}}{% else %}{{cart.quantity}}{% endif %}">
+                    <button class="increment beautiful-button {% if cart.quantity >= cart.product.quantity %}disabled-btn{% endif %}" type="button" name="button"
+            data-cart-id="{{ cart.id }}" data-value="{{ cart.product.quantity }}"
+                    data-cart-change-url="{% url 'cart:cart_change' %}" {% if cart.quantity >= cart.product.quantity %}disabled="true"{% endif %}>
+                {% csrf_token %}
+                +
+            </button>
+                  </div>
+              {% endif %}
+          </div>
+              {% if cart.product.quantity  %}
+          <div class="total-price">{{ cart.products_price }} руб</div>
+             <a href="{% url  'cart:cart_remove' %}" class="delete-btn remove-from-cart" type="button" name="button" data-cart-id="{{ cart.id }}">
+                 {% csrf_token %}
+                <img class="img-btn btn-remove" src="{% static "goods/icon/container.png" %}" alt="" />
+            </a>
+            {% else %}
+            <div class="no-product">
+            <h5>Товара нет в наличии</h5>
+                 <a href="{% url  'cart:cart_remove' %}" class="remove-from-cart no-product-btn" type="button" name="button" data-cart-id="{{ cart.id }}">
+                 {% csrf_token %}
+                <img class="img-btn btn-remove" src="{% static "goods/icon/container.png" %}" alt="" />
+            </a>
+                </div>
+            {% endif %}
+        </div>
+
+        {% endfor %}
+
+        {% if carts %}
+        <div class="info-order">
+            <p> Итого <strong>{{carts_info.total_quantity}}</strong> товар(а) на сумму: <strong>{{carts_info.total_price}} руб</strong></p>
+        </div>
+        <div class="item">
+            <div class="description buy-btn">
+                {% if carts_info.total_quantity %}
+                    {% if not user.is_authenticated %}
+                     <a class="underlineHover-buy" href="{% url "user:login" %}">Оформить заказ</a>
+                    {% else %}
+                    <a class="underlineHover-buy" href=" {% url "orders:order" %}">Оформить заказ</a>
+                    {% endif %}
+                {% else %}
+                <a class="underlineHover-buy " href=" {% url "goods:categories" %}">Начать покупки</a>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <div class="info-order order-none-info">
+            <h2 class="order-none-h2">Корзина пуста</h2>
+            <div class=" buy-btn order-none">
+                 <a class="underlineHover-buy" href=" {% url "goods:categories" %}">Начать покупки</a>
+            </div>
+        </div>
+        {% endif%}
+      </div>
+    </div>
+</div>

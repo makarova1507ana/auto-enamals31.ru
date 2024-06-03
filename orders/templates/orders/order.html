@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+{% load carts_tags %}
+
+
+
+{% block style %}
+<link href="{% static "carts/css/style_corzina.css" %}" rel="stylesheet" />
+<link href="{% static "carts/css/style-login.css" %}" rel="stylesheet" />
+<link href="{% static "carts/css/style-order.css" %}" rel="stylesheet" />
+{% endblock  %}
+
+{% block title %}
+    <title>Заказ</title>
+{% endblock  %}
+
+{% block content %}
+{% user_carts_quantity request as carts_all %}
+{% user_carts_order request as carts %}
+<div id="carts-container">
+    <div class="shopping-cart formContent" id="cart-items-container">
+        <!-- Title -->
+        <div class="title">
+         <h3 class="text-center mb-4">Заказ</h3>
+        </div>
+
+        {% for cart in carts_all %}
+
+        <!-- Товар  -->
+        <div class="item">
+          <div class="buttons">
+          </div>
+
+          <div class="image-product">
+              <a href="{% url 'catalog:detail_card' cart.product.slug %}">
+                      <img  src="{% if not cart.product.image %}{% static 'assets/img/no-photo.png'%}{% else %}{{cart.product.image.url }}{% endif %}" alt="{{ cart.product.name }}"/>
+                     </a>
+          </div>
+
+          <div class="description">
+              <a href="{% url 'catalog:detail_card' cart.product.slug %}">
+                <span>{{ cart.product.name|truncatewords:6 }}</span>
+              </a>
+          </div>
+
+          <div class="total-p">
+            <div class="total-price">{{ cart.quantity }}шт</div>
+          
+              {% if cart.product.quantity  %}
+          <div class="total-price">{{ cart.products_price }} руб</div>
+        </div>
+                </div>
+            {% endif %}
+        
+
+        {% endfor %}
+        
+        {% if carts %}
+        <div class="info-order">
+            <p> Итого <strong>{{carts.total_quantity}}</strong> товар(а) на сумму: <strong>{{carts.total_price}} руб</strong></p>
+        </div>
+         <hr>
+        <div class="data-profile btn- input-order">
+            <a class="underlineHover-buy link-a " href="{% url "orders:order-input"%}">Заполнить данные</a>
+        </div>
+        {% endif%}
+    </div>
+      </div>
+    </div>
+</div>
+{% endblock  %}

@@ -1,0 +1,59 @@
+{% load static %}
+{% load carts_tags %}
+
+{% user_carts_for_catalog request as carts %}
+{% user_carts request as carts_cat %}
+
+
+
+            <!-- Карточка товара -->
+            <div class="card">
+                <!-- Верхняя часть -->
+                <div class="card__top">
+                    <!-- Изображение-ссылка товара -->
+                    <a href="{% url 'catalog:detail_card' product.slug %}" class="card__image">
+                         <img  src="{% if not product.image %}{% static 'assets/img/no-photo.png'%}{% else %}{{ product.image.url }}{% endif %}" alt="{{ product.name }}"/>
+                    </a>
+                    <!-- Скидка на товар -->
+                    {% if product.discount >= 1 %}
+                    <div class="card__label">-{{product.discount}}%</div>
+                    {% endif %}
+                </div>
+                <!-- Нижняя часть -->
+                <div class="card__bottom">
+                    <!-- Цены на товар (с учетом скидки и без)-->
+                    <div class="card__prices">
+                        {% if product.discount %}
+                        <div class="card__price card__price--discount">{{product.sell_price}}₽</div>
+                        <div class="card__price card__price--common">{{product.price}}₽</div>
+                        {% else %}
+                        <div class="card__price card__price-common"><p class="text-price">{{product.price}}₽</p></div>
+                        {% endif %}
+                    </div>
+                    <!-- Ссылка-название товара -->
+                    <p class="product_id">id: {{ product.display_id }}</p>
+                    <a href="{% url 'catalog:detail_card' product.slug %}" class="card__title">
+                        {{ product.name|truncatewords:6  }}
+                    </a>
+                    <!-- Кнопка добавить в корзину -->
+
+                    {% if product.quantity %}
+                             {% if product  in carts %}
+                                <a href="{% url 'cart:cart_add' %}" class="card__add add-to-cart" data-product-id="{{ product.id }}"
+                                data-product-count="{{ product.quantity }}"
+                                   data-product-cart="{% for car in carts_cat %}{% if car.product == product %}{{car.quantity}}{% endif %}{% endfor %}">
+                                    {% csrf_token %}
+                                    В корзину</a>
+                            {% else %}
+                                 <a href="{% url 'cart:cart_add' %}" class="card__add add-to-cart" data-product-id="{{ product.id }}"
+                                data-product-count="{{ product.quantity }}" data-product-cart="0">
+                                    {% csrf_token %}
+                                    В корзину</a>
+                            {% endif %}
+                    {% else %}
+                    <h3 class="text-center">Нет в наличии</h3>
+                    {% endif %}
+                </div>
+            </div>
+
+

@@ -1,0 +1,135 @@
+
+.container-main{
+    margin-top:100px;
+}
+
+.title{
+    text-align: center;
+}
+
+.img-card-div{
+    width: 67%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-card{
+    height: 100%;
+    width: 100%;
+}
+
+.card-main{
+    border: none;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.price-h3{
+    text-align: center;
+    color: #0f5132;
+    font-size: 60px;
+    margin: 5%;
+}
+
+.div-price{
+    border-radius: 5px;
+    margin: auto;
+
+}
+
+.add-to-cart-detail{
+    text-decoration: none;
+}
+
+
+.p-discription{
+    margin-bottom: 10px;
+}
+.description{
+    margin-bottom: 112px;
+    padding: 25px;
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    border-radius: 0 0 10px 10px;
+    margin-top: 50px;
+    height: 100%;
+}
+
+.card__add {
+    background-color: #0f5132;
+    display: block;
+    width: 100%;
+    font-weight: 400;
+    font-size: 17px;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #0f5132;
+    border-radius: 4px;
+    cursor: pointer; /* Меняем курсор при наведении */
+    transition: 0.2s;
+    margin-top: auto; /* Прижимаем кнопку к низу карточки */
+  }
+
+.card__add:hover {
+    border: 1px solid #1e955d;;
+    background-color: #1e955d;
+    color: #fff;
+}
+
+.cards{
+    overflow: hidden 
+}
+
+
+@media(max-width: 768px){
+    .card-main{
+    display: block;
+    margin-bottom: 60px;
+    }
+    .card {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    }
+    #cards {
+
+    display: block;
+    }
+}
+
+.img-full-none{
+    display:none;
+}
+
+.img-full{
+    display:block;
+}
+
+
+.button-close{
+   margin-left: 80%;
+   width:70px;
+   height: 70px;
+   border:none;
+   border-radius:10px;
+   background-color: rgb(0, 95, 20);
+}
+
+.button-close:hover{
+   background-color: #1e955d;
+}
+
+.link-a-product{
+    color:rgb(0, 95, 20);
+    text-decoration: none;
+}
+
+.link-a-product:hover{
+    color: #1e955d;
+}
+
+.div-links-a{
+font-weight: bold;
+    margin-bottom:50px;
+}

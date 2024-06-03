@@ -1,0 +1,5 @@
+Ваш заказ № {{order.id}}
+Сумма: {{OrderItem.total_price}} руб.
+Количестве: {{OrderItem.total_quantity}}
+Статус: плачен и находится в обработке
+Для просмотра детального отображения заказа опередите по ссылке http://{{ domain }}{% url 'orders:detail-order' user.id order.id %}

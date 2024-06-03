@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<link href="{% static "users/css/style-login.css" %}" rel="stylesheet" />
+<link href="{% static "users/css/style-profile.css" %}" rel="stylesheet" />
+{% endblock  %}
+
+{% block title %}
+    <title>Изменения профиля</title>
+{% endblock  %}
+
+
+{% block content %}
+<div class="content">
+    <div class="wrapper fadeInDown">
+        <div class="col-md-">
+            <form action="{% url 'user:rename' %}" method="POST">
+                {% csrf_token %}
+                <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow">
+                    <h3 class="text-center mb-4">Профиль</h3>
+                        <div class="row">
+                            <div class="data-profile rename">
+                                <input type="text" class="fadeI second" id="id_first_name"
+                                       name="first_name"
+                                       placeholder="Введите ваше имя"
+                                       value="{{ form.first_name.value }}"
+                                       >
+                                        {% if form.first_name.errors %}
+                                        <div class="alert alert-danger alert-dismissible fade show">{{ form.first_name.errors }}</div>
+                                        {% endif%}
+                            </div>
+                            <div class="data-profile rename">
+                                <input type="text" class="fadeI second" id="id_last_name"
+                                       name="last_name"
+                                       placeholder="Введите вашу фамилию"
+                                      value="{{ form.last_name.value }}"
+                                       >
+                                        {% if form.last_name.errors %}
+                                        <div class="alert alert-danger alert-dismissible fade show">{{ form.last_name.errors }}</div>
+                                        {% endif%}
+                            </div>
+
+                            </div>
+
+                            <div class="data-profile btn-">
+                                <input type="submit" class="fadeIn fourth" value="Сохранить">
+
+                            </div>
+                        </div>
+             </form>
+                </div>
+            </div>
+         </div>
+     </div>
+
+{% endblock  %}

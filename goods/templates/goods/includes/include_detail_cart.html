@@ -1,0 +1,41 @@
+{% load static %}
+{% load carts_tags %}
+
+{% user_carts_for_catalog request as carts %}
+{% user_carts request as carts_cat %}
+
+            <div class='description'>
+                <div class="div-price">
+                    <h3 class='price-h3'>{{  product.sell_price }}₽</h3>
+                </div>
+
+               <h2>Описание</h2>
+                 {% if product.description %}
+                <p class="p-discription text-justify" >{{ product.description}}</p>
+                 {% endif %}
+
+                 {% if product.color %}
+                <p class="p-discription">Цвет: {{ product.color }}</p>
+                 {% endif %}
+
+                 {% if product.brand %}
+                <p class="p-discription">Бренд: {{ product.brand }}</p>
+                 {% endif %}
+
+                 {% if product.quantity %}
+                         {% if product  in carts %}
+                            <a href="{% url 'cart:cart_add_detail' %}" class="card__add add-to-cart-detail" data-product-id="{{ product.id }}"
+                            data-product-count="{{ product.quantity }}"
+                               data-product-cart="{% for car in carts_cat %}{% if car.product == product %}{{car.quantity}}{% endif %}{% endfor %}">
+                                {% csrf_token %}
+                                В корзину</a>
+                        {% else %}
+                             <a href="{% url 'cart:cart_add_detail' %}" class="card__add add-to-cart-detail" data-product-id="{{ product.id }}"
+                            data-product-count="{{ product.quantity }}" data-product-cart="0">
+                                {% csrf_token %}
+                                В корзину</a>
+                        {% endif %}
+                {% else %}
+                <h3 class="text-center">Нет в наличии</h3>
+                {% endif %}
+            </div>

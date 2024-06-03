@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% load carts_tags %}
+
+
+
+{% block style %}
+<link href="{% static "carts/css/style_corzina.css" %}" rel="stylesheet" />
+<link href="{% static "carts/css/style-login.css" %}" rel="stylesheet" />
+{% endblock  %}
+
+{% block title %}
+    <title>Корзина</title>
+{% endblock  %}
+
+{% block content %}
+{% user_carts request as carts %}
+{% user_carts_order request as carts_info %}
+    {% include 'carts/included/include_cart.html' %}
+{% endblock  %}

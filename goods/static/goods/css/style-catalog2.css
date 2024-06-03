@@ -1,0 +1,422 @@
+:root{
+  --main-color-green: rgb(0, 95, 20);
+  --main-color-green-hover: #1e955d;
+  --main-color-green-hover-box-shadow:#0f513247;
+
+}
+
+
+
+#btn-cancel{
+    background-color: var(--main-color-green);
+    border:none;
+        border-radius: 2px;
+    display: none;
+}
+
+
+#btn-cancel:hover{
+    background-color: var(--main-color-green-hover);
+}
+
+
+.btn-cancel{
+    margin-left: 180px;
+    display:none;
+}
+
+.btn-filter{
+    width: 100px;
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+.filter-search{
+        height: 120px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.black-text{
+    color: black;
+}
+
+.loader{
+    margin-top:0;
+}
+.info-p{
+    margin-bottom: 132px;
+    margin-top: 132px;
+    font-weight: 700;
+    font-size: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 500px;
+}
+
+.input-form-control{
+    height: 36px;
+}
+
+.btn-form-control{
+    height: 36px;
+}
+
+
+.info-div{
+width: 100%;
+    }
+
+#cart-items-container{
+     display: contents;
+}
+
+#products{
+    display: flex;
+}
+
+
+.active-page .page-link{
+    color:#ffffff;
+    background-color: var(--main-color-green);
+    border-color:  var(--main-color-green);
+}
+
+.card__price-common {
+    margin:auto;
+}
+
+.text-price{
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.active-page .page-link:hover{
+    color:#ffffff;
+    background-color: var(--main-color-green-hover);
+    border-color:  var(--main-color-green-hover);
+}
+
+
+/* Фильтрация по цене  */
+.dropdown-toggle{
+    border: var(--main-color-green);
+    background-color: var(--main-color-green);
+    margin-top: 24px;
+    margin-left: 12px;
+}
+
+
+.card {
+  margin-bottom: 29px;
+  height: 470px;
+  width: 262px;
+  min-height: 350px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Размещаем элементы в колонку */
+  border-radius: 4px;
+  transition: 0.2s;
+  position: relative;
+}
+
+.paginator{
+  margin-top: 30px;
+  width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.form-check-title{
+    font-size: 1.35rem;
+}
+
+.form-check-input{
+    outline: none;
+}
+
+.form-check-input:focus {
+box-shadow: 0 0 0 0.25rem var(--main-color-green-hover-box-shadow);
+}
+
+
+.form-check-input:checked {
+    outline: none;
+    background-color: var(--main-color-green);
+    border-color: var(--main-color-green-hover-box-shadow);
+}
+
+.div--select{
+    margin-top:20px;
+}
+
+/* Стили к сортировки по цене, по популярности */
+#cities{
+    outline: none;
+    margin-left: 13px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+ /* Стили к сортировки :focus  */
+#cities:focus{
+    box-shadow: 0 0 0 0.25rem var(--main-color-green-hover-box-shadow);
+   border: 1px solid var(--main-color-green);
+}
+
+
+.page-link:focus{
+    box-shadow: 0 0 0 0.25rem  var(--main-color-green-hover-box-shadow);
+}
+
+@media (min-width: 992px){
+  .col-lg-4 {
+      padding: 0.5rem !important;
+      flex: 0 0 auto;
+      width: 32.33333333%;
+  }
+}
+
+
+/* При наведении на карточку - меняем цвет тени */
+.card:hover {
+  box-shadow: 4px 8px 16px #0f5132;
+}
+
+.card__top {
+  flex: 0 0 220px; /* Задаем высоту 220px, запрещаем расширение и сужение по высоте */
+  position: relative;
+  overflow: hidden; /* Скрываем, что выходит за пределы */
+}
+
+/* Контейнер для картинки */
+.card__image {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card__image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Встраиваем картинку в контейнер card__image */
+  transition: 0.2s;
+}
+
+/* При наведении - увеличиваем картинку */
+.card__image:hover > img {
+  transform: scale(1.1);
+}
+
+/* Размещаем скидку на товар относительно изображения */
+.card__label {
+  padding: 4px 8px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: #ff6633;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #fff;
+}
+
+.card__bottom {
+  text-decoration:none;
+  flex-direction: column;
+  flex: 1 0 auto; /* Занимаем всю оставшуюся высоту карточки */
+  padding: 10px;
+}
+
+.card__prices {
+  height: 64px;
+  display: flex;
+  margin-bottom: 10px;
+  flex: 0 0 50%; /* Размещаем цены равномерно в две колонки */
+}
+
+.card__price::after {
+  margin-left: 4px;
+  position: relative;
+}
+
+.card__price--discount {
+  width:76px;
+  font-weight: 700;
+  font-size: 30px;
+  color: #414141;
+  display: flex;
+  flex-wrap: wrap-reverse;
+}
+
+.card__price--discount::before {
+  content: "Со скидкой";
+  font-weight: 400;
+  font-size: 13px;
+  color: #bfbfbf;
+}
+
+.card__price--common {
+  width: 74px;
+  margin-left: auto;
+  font-weight: 400;
+  font-size: 17px;
+  color: #606060;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
+}
+
+.card__price--common::before {
+  content: "Обычная";
+  font-weight: 400;
+  font-size: 13px;
+  color: #bfbfbf;
+}
+
+/* Стили к поиску */
+.d-flex{
+    padding-right: 74px;
+    padding-left: 26px;
+    margin-top: 20px;
+}
+
+
+/* Стили к кнопки поиска */
+.btn-search{
+    background-color: var(--main-color-green);
+    border: var(--main-color-green);
+}
+
+/* Стили к кнопки поиска :hover */
+.btn-search:hover{
+    background-color: var(--main-color-green-hover);
+}
+
+/* Стили к полю поиска */
+
+.form-control:focus{
+    border-color: var(--main-color-green);
+    box-shadow: 0 0 0 0.25rem  var(--main-color-green-hover-box-shadow);
+}
+
+
+.card__title {
+    height: 66px;
+   text-decoration:none;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 150%;
+  color: #414141;
+}
+
+.card__title:hover {
+  color: #39a974;
+}
+
+.card__add {
+
+  background-color: rgb(0, 95, 20);
+  display: block;
+  width: 100%;
+  font-weight: 400;
+  font-size: 17px;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #0f5132;
+  border-radius: 4px;
+  cursor: pointer; /* Меняем курсор при наведении */
+  transition: 0.2s;
+  margin-top: auto; /* Прижимаем кнопку к низу карточки */
+}
+
+.card__add:hover {
+  border: 1px solid #1e955d;;
+  background-color: #1e955d;
+  color: #fff;
+}
+
+.apply-btn{
+    margin-top: 21px;
+}
+
+@media(max-width: 768px)
+    .card-catalog  {
+    margin-left:10%
+}
+
+#style-3::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgb(241, 241, 241);
+	background-color: #ffffff;
+}
+
+#style-3::-webkit-scrollbar
+{
+	width: 4px;
+	background-color: #ffffff;
+}
+
+#style-3::-webkit-scrollbar-thumb
+{
+	background-color:var(--main-color-green);
+}
+
+
+.style-3::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgb(241, 241, 241);
+	background-color: #ffffff;
+}
+
+.style-3::-webkit-scrollbar
+{
+	width: 4px;
+	background-color: #ffffff;
+}
+
+.style-3::-webkit-scrollbar-thumb
+{
+	background-color:var(--main-color-green);
+}
+
+.input-number{
+    display: flex;
+    border: 1px solid;
+    width: 92px;
+    border-radius: 5px;
+}
+
+
+.num-input{
+    border:none;
+}
+
+.num-input:focus-visible{
+    border:none;
+}
+
+.num-input:focus{
+    border:none;
+}
+
+.num-input:hover{
+    border:none;
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}

@@ -1,0 +1,92 @@
+:root {
+    --color-main: rgb(0, 95, 20);
+    --color-main-hover: rgb(0, 129, 28);
+}
+
+
+
+.col-md-{
+     max-width: 450px;
+     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+     border-radius: 0 0 10px 10px;
+}
+
+.btn-exit{
+    width: 100%;
+    background-color: var(--color-main);
+    padding: 15px 32px;
+    border-radius: 5px;
+    border: 1px solid #f6f6f6;
+}
+
+.btn-exit:hover{
+  background-color: var(--color-main-hover);
+}
+
+.btn-exit:active{
+  background-color: var(--color-main-hover);
+}
+
+.fadeI {
+    width: 100%;
+}
+
+
+.link-a{
+    width: 100%;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: var(--color-main);
+    padding: 15px 32px;
+    text-align: center;
+    border: 2px solid #f6f6f6;
+    border-radius: 5px 5px 5px 5px;
+}
+.link-a:hover{
+    background: var(--color-main-hover);
+    color: #fff;
+}
+
+ .link-a:focus{
+    background: var(--color-main-hover);
+    color: #fff;}
+
+
+.btn-{
+    margin: 5px;
+}
+
+.content{
+    margin-top: 160px;
+}
+
+.card__add {
+    background-color: #0f5132;
+    display: block;
+    width: 100%;
+    font-weight: 400;
+    font-size: 17px;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #0f5132;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: auto;
+}
+
+.card__add:hover {
+    border: 1px solid #1e955d;
+    background-color: #1e955d;
+    color: #fff;
+}
+
+.margin-15{
+    margin-bottom: 8px;
+}
+
+.input-change-password{
+    margin-left: 20px;
+}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block style %}
+    <link href="{% static "users/css/style-login.css" %}" rel="stylesheet">
+    <script src="{% static "users/js/phone_input.js" %}"></script>
+{% endblock  %}
+
+{% block title %}
+    <title>Вход</title>
+{% endblock  %}
+
+
+{% block content %}
+<div class="content">
+    <div class="wrapper fadeInDown">
+       <div id="formContent">
+         <!-- Tabs Titles -->
+     
+         <!-- Icon -->
+         <div class="fadeIn first form-label">
+            <h3>Авторизация</h3>
+         </div>
+         <!-- Login Form -->
+         <form action="{% url 'user:login' %}" class="form-login" method="post">
+          {% csrf_token %}
+           <input id="id_email" name="username" type="email" class="fadeIn second " placeholder="Почта" required>
+             {% if form.email.errors %}
+              <div class="alert alert-danger alert-dismissible fade show">{{ form.email.errors }}</div>
+              {% endif%}
+           <input id="id_password" name="password" type="password" class="fadeIn second phone_mask"  placeholder="Пароль" required>
+             {% if form.password.errors %}
+             <div class="alert alert-danger alert-dismissible fade show">{{ form.password.errors }}</div>
+              {% endif%}
+           <input type="submit" class="fadeIn fourth" value="Вход">
+         </form>
+     
+         <!-- Remind Passowrd -->
+         <div id="formFooter">
+           <a class="underlineHover" href="{% url "user:restore_password" %}">Забыли пароль?</a>
+             <a class="underlineHover" href=" {% url "user:registration" %}">Регистрация</a>
+<!--             <a class="underlineHover" href=" {% url "social:begin" 'github' %}">Github</a>-->
+         </div>
+       </div>
+     </div>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<link href="{% static "users/css/style-login.css" %}" rel="stylesheet" />
+<link href="{% static "users/css/style-profile.css" %}" rel="stylesheet" />
+{% endblock  %}
+
+{% block title %}
+    <title>Выберите действие</title>
+{% endblock  %}
+
+{% block content %}
+<div class="content">
+    <div class="wrapper fadeInDown">
+        <div class="col-md-">
+                <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow">
+                    <h3 class="text-center mb-4">Выберите действие</h3>
+                        <div class="row">
+                                <a  class="card__add margin-15 " href="{% url 'user:rename' %}" >
+                                    Изменить данные профиля
+                                  </a>
+
+                                <a  class="card__add margin-15" href="{% url 'user:change_password' %}" >
+                                    Поменять пароль</a>
+
+                        </div>
+
+                </div>
+            </div>
+         </div>
+     </div>
+{% endblock  %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Автоэмали31</title>
+{% endblock  %}
+
+{% block content %}
+<header class="masthead" style="background-image: url({% static "assets/img/11.png" %});" >
+    <div class="container">
+        <div class="masthead-heading text-uppercase">Всегда выгодные и удобные покупки!</div>
+        <a class="btn btn-primary btn-xl text-uppercase" href=" {% url "goods:categories" %}">Каталог</a>
+    </div>
+</header>
+<section class="page-section" id="services">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Наши приимущества</h2>
+            <h3 class="section-subheading text-muted"></h3>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <img  class="img-index" src="{% static 'icons/social_link/products.png'%}">
+                </span>
+                <h4 class="my-3">Широкий ассортимент</h4>
+                <p class="text-muted">Большое разнообразие вид автоэмалей различных марок и цветовых оттенков.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                     <img  class="img-index" src="{% static 'icons/social_link/fast_dilivery.png'%}">
+                </span>
+                <h4 class="my-3">Быстрая доставка</h4>
+                <p class="text-muted">Обеспечиваем перативную доставку заказов клиентам а также  гибкие варианты доставки.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                   <img  class="img-index" src="{% static 'icons/social_link/suport.png'%}">
+                </span>
+                <h4 class="my-3">Поддержка</h4>
+                <p class="text-muted">Возможность получить квалифицированную консультацию и помощь в выборе автоэмали. Работающая служба поддержки оперативно отвечает на вопросы и помогает решить возникающие проблемы.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Товары</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 1-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="{% url 'main:about' %}">
+                        <div class="portfolio-hover">
+                        </div>
+                        <img class="img-fluid" src="https://storage.yandexcloud.net/new-prod-avto-emali/ec1ee09701961c004284b26b98779141_1ed57a368e2eb60f60cea76641799024_photo_757d36ae-2a0a-470b-9d2e-497d0208feed.webp" alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Краски и грунты</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 2-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                        <div class="portfolio-hover">
+                        </div>
+                        <img class="img-fluid" src="https://storage.yandexcloud.net/new-prod-avto-emali/fef3f6d670a2f25e70231341cfe28bfe_48a3aea407ef9a387794901a553aef9f_photo_dfd6f22d-678d-4345-b4d5-2b70e634616a.webp" alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Средства защиты</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 3-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#">
+                        <div class="portfolio-hover">
+                        </div>
+                        <img class="img-fluid" src="https://storage.yandexcloud.net/new-prod-avto-emali/c81f5510a843910c64a796cd4071af0a_e207b1dfa2a9b8b75e488e6baf6f2272_photo_7c22930e-444d-4939-8aa3-32a001063a03.webp" alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Оборудование</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

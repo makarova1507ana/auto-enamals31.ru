@@ -1,0 +1,136 @@
+:root {
+    --main-color-green: rgb(0, 95, 20);
+    --main-color-green-hover: #1e955d;
+    --main-color-green-hover-box-shadow: #0f513247;
+}
+
+.description-order{
+    margin-top: 11px;
+    margin-left: 8px;
+}
+
+
+
+.item-order{
+    
+    padding: 20px 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item-order-last{
+    margin-bottom:20px;
+    padding: 20px 30px;
+    height: 60px;
+    display: flex;
+}
+
+.data-profile{
+    margin-bottom: 10px;
+}
+
+.link-a {
+    margin-bottom: 40px;
+    margin-left: -9px;
+}
+
+.hr-orders{
+    padding-bottom:30px;
+}
+
+.image-orders{
+    width: 300px;
+}
+
+.description-order-img{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quantity-price{
+    font-size: 29px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.description-order-name{
+    text-align: center;
+    width:100%;
+}
+
+.total_price{
+    font-size: 33px;
+}
+
+.total_quantity{
+    font-size: 33px;
+    margin-bottom:30px;
+}
+
+
+.cancel-order{
+    color:red;
+    font-weight: 900;
+}
+
+.btn-m-right{
+    border-radius: 10px;
+    color:white;
+    margin-left: auto;
+    text-align: center;
+    height: 44px;
+    width: 165px;
+    background-color: var(--main-color-green);
+}
+
+.btn-m-right:hover{
+    background-color: var(--main-color-green-hover);
+}
+
+.description-order-p{
+    text-align: center;
+    font-size: 29px;
+    margin-bottom: 22px;
+}
+
+.status-order{
+    font-weight: 900;
+}
+
+.link-a-order{
+    font-weight: 900;
+    width: 100%;
+    height: 100%;
+    color: white;
+    padding: 10px;
+}
+
+.link-a-order:hover{
+    color: white;
+}
+
+.link-a-order-detail{
+    text-transform: uppercase;
+    font-weight: 900;
+    border-radius: 5px;
+    background-color: var(--main-color-green);
+    color: white;
+    margin-bottom: 16px;
+    height: 100%;
+    width: 100%;
+    padding: 15px 32px;
+    text-align: center;
+}
+
+
+.link-a-order-detail:hover{
+    color: white;
+    background-color: var(--main-color-green-hover);
+}
+
+
+
+.div-link-a-order{
+    padding: 15px 32px;
+}

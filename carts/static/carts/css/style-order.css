@@ -1,0 +1,87 @@
+:root {
+    --main-color-green: rgb(0, 95, 20);
+    --main-color-green-hover: #1e955d;
+    --main-color-green-hover-box-shadow: #0f513247;
+}
+
+.form-check-input-1{
+    width: 1em;
+    height: 1em;
+    margin-top: 0.25em;
+    vertical-align: top;
+}
+
+input[type='radio']{
+    outline: none;
+    background-color: var(--main-color-green);
+    border-color: var(--main-color-green-hover-box-shadow);
+}
+
+
+.total-p{
+    margin-top: -20px;
+    display: flex;
+    
+}
+
+
+.description {
+    padding-top: 10px;
+    width: 297px;
+}
+
+.image-product img {
+    margin-top: 20px;
+    margin-right: 14px;
+    width: 60px;
+}
+
+.text-order{
+    margin-top: 50px;
+}
+
+.input-order{
+    width: 92%;
+    margin-left: 25px;
+}
+
+.text-area{
+    background-color: #f6f6f6;
+    border: none;
+}
+
+.link-a {
+    width: 100%;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: var(--color-main);
+    padding: 15px 32px;
+    text-align: center;
+    border: 2px solid #f6f6f6;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.link-a:focus {
+    background: var(--color-main-hover);
+    color: #fff;
+}
+
+.link-a:hover {
+    background: var(--color-main-hover);
+    color: #fff;
+}
+a:hover {
+    color: var(--bs-link-hover-color);
+}
+
+.input-order-radio{
+    margin-top: 14px;
+    width: 47%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-order-radio{
+    margin-top: 14px;
+}
